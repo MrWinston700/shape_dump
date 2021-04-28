@@ -1,0 +1,122 @@
+<html>
+    <head>
+        <style type="text/css">
+            #shape1 {
+                width: 200px;
+                height: 200px;
+                background-color: aquamarine;
+                position: relative;
+                mix-blend-mode: multiply;
+            }
+            #shape2 {
+                width: 200px;
+                height: 200px;
+                background-color: aquamarine;
+                position: relative;
+                mix-blend-mode: multiply;
+            }
+
+            .square {
+                height: 50px;
+                width: 50px;
+                background-color: #555;
+            }
+            .oval {
+                height: 50px;
+                width: 100px;
+                background-color: #555;
+                border-radius: 50%;
+            }
+
+            .trapezoid {
+                border-bottom: 50px solid #555;
+                border-left: 25px solid transparent;
+                border-right: 25px solid transparent;
+                height: 0;
+                width: 125px;
+            }
+
+            .parallelogram {
+                width: 100px;
+                height: 50px;
+                transform: skew(20deg);
+                background: #555;
+            }
+
+            .triangle-up {
+                width: 0;
+                height: 0;
+                border-left: 25px solid transparent;
+                border-right: 25px solid transparent;
+                border-bottom: 50px solid #555;
+            }
+
+            .triangle-down {
+                width: 0;
+                height: 0;
+                border-left: 25px solid transparent;
+                border-right: 25px solid transparent;
+                border-top: 50px solid #555;
+            }
+
+            ​.triangle-left {
+                width: 0;
+                height: 0;
+                border-top: 25px solid transparent;
+                border-right: 50px solid #555;
+                border-bottom: 25px solid transparent;
+            }
+
+        </style>
+    </head>
+    <body>
+        <p>Your time: <span id="timeTaken"></span></p>
+        <div id="shape1"></div>
+        <div id="shape2"></div>
+        
+
+        <script type="text/javascript">
+
+            let start = new Date().getTime();
+
+            function getRandomColor() {
+                let letters = '0123456789ABCDEF'.split('');
+                let color = '#'
+                for (let i = 0; i < 6; i++) {
+                    color += letters[Math.floor(Math.random() * 16)];
+                }
+                return color;
+            }
+
+            function makeShapeAppear(shape) {
+                let top = Math.random() * 400;
+                let left = Math.random() * 400;
+                let width = Math.random() * 400;
+
+                shape.style.top = top + "px";
+                shape.style.left = left + "px";
+                shape.style.width = width + "px";
+                shape.style.display = "block";
+                shape.style.backgroundColor = getRandomColor();
+
+                start = new Date().getTime();
+            }
+
+            document.getElementById("shape1").onclick = function() {
+                document.getElementById("shape1").style.display = "none";
+                let end = new Date().getTime();
+                let timeTaken = (end - start) / 1000;
+                document.getElementById("timeTaken").innerHTML = timeTaken + "s"
+                setTimeout(makeShapeAppear(document.getElementById("shape1")), Math.random() * 2000);
+            }
+
+            document.getElementById("shape2").onclick = function() {
+                document.getElementById("shape2").style.display = "none";
+                let end = new Date().getTime();
+                let timeTaken = (end - start) / 1000;
+                document.getElementById("timeTaken").innerHTML = timeTaken + "s"
+                setTimeout(makeShapeAppear(document.getElementById("shape2")), Math.random() * 2000);
+            }
+        </script>
+    </body>
+</html>
